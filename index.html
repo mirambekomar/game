@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Точки на круге</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>Точки на круге</h1>
+      <p class="subtitle">
+        Соедините пары <strong>одного цвета</strong>. Линии <strong>не должны пересекаться</strong>.
+        На телефоне касайтесь точек по очереди.
+      </p>
+    </header>
+
+    <div class="toolbar">
+      <label class="field">
+        <span class="field-label">Пар</span>
+        <select id="pairCount" aria-label="Количество пар">
+          <option value="4">4</option>
+          <option value="5" selected>5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select>
+      </label>
+      <button type="button" id="newGame" class="btn">Новая игра</button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="board" aria-label="Игровое поле"></canvas>
+    </div>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
