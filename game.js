@@ -27,7 +27,7 @@
   let centerX = 0;
   let centerY = 0;
   let radius = 0;
-  let dotRadius = 26;
+  let dotRadius = 14;
   let minStep = 4;
   let activePointerId = null;
 
@@ -95,7 +95,7 @@
   }
 
   function findDotAt(pos) {
-    const threshold = dotRadius * 1.7;
+    const threshold = dotRadius * 2.2;
     return dots.find((dot) => Math.hypot(dot.x - pos.x, dot.y - pos.y) <= threshold) || null;
   }
 
@@ -119,13 +119,13 @@
     centerX = width / 2;
     centerY = height / 2;
     radius = size * 0.465;
-    dotRadius = Math.max(17, Math.min(26, size * 0.05));
+    dotRadius = Math.max(8, Math.min(14, size * 0.028));
     minStep = Math.max(3, size * 0.0075);
   }
 
   function generatePositions(count) {
-    const borderPadding = dotRadius + 12;
-    let minDist = Math.max(dotRadius * 2.1, radius * 0.22);
+    const borderPadding = dotRadius + 8;
+    let minDist = Math.max(dotRadius * 4, radius * 0.22);
 
     for (let restart = 0; restart < 12; restart++) {
       const result = [];
@@ -305,7 +305,7 @@
 
   function drawConnections() {
     const all = currentDrawing ? connections.concat(currentDrawing) : connections;
-    const lineWidth = Math.max(12, width * 0.032);
+    const lineWidth = Math.max(4, width * 0.012);
     for (const conn of all) {
       if (!conn || conn.path.length < 2) continue;
       ctx.beginPath();
@@ -320,7 +320,7 @@
       if (conn === currentDrawing) {
         ctx.globalAlpha = 0.6;
       } else {
-        ctx.shadowBlur = 22;
+        ctx.shadowBlur = 10;
         ctx.shadowColor = conn.color;
       }
       ctx.stroke();
@@ -335,7 +335,7 @@
       const isCurrent = currentDrawing && currentDrawing.color === dot.color;
 
       ctx.beginPath();
-      ctx.arc(dot.x, dot.y, dotRadius + 14, 0, Math.PI * 2);
+      ctx.arc(dot.x, dot.y, dotRadius + 6, 0, Math.PI * 2);
       ctx.fillStyle = "#020617";
       ctx.fill();
 
@@ -343,7 +343,7 @@
       ctx.arc(dot.x, dot.y, dotRadius, 0, Math.PI * 2);
       ctx.fillStyle = dot.color;
       if (isConnected || isCurrent) {
-        ctx.shadowBlur = 28;
+        ctx.shadowBlur = 14;
         ctx.shadowColor = dot.color;
       }
       ctx.fill();
@@ -352,7 +352,7 @@
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, dotRadius, 0, Math.PI * 2);
       ctx.strokeStyle = "rgba(255,255,255,0.52)";
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 2;
       ctx.stroke();
     }
   }
