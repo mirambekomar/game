@@ -1,6 +1,25 @@
 (function () {
   "use strict";
 
+  if (window.Telegram && window.Telegram.WebApp) {
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+    if (typeof tg.disableVerticalSwipes === "function") {
+      tg.disableVerticalSwipes();
+    }
+  }
+
+  document.addEventListener(
+    "touchmove",
+    function (e) {
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
+    },
+    { passive: false }
+  );
+
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
   const levelDisplay = document.getElementById("level-display");
