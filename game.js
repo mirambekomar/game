@@ -212,7 +212,23 @@
     completedPairs = connections.length;
     updatePairsDisplay();
     if (completedPairs === numPairs) {
-      window.setTimeout(() => winModal.classList.remove("hidden"), 260);
+      window.setTimeout(() => {
+        const modalTitle = document.getElementById("win-title");
+        const modalText = winModal.querySelector("p");
+        const modalBtn = document.getElementById("modal-next-btn");
+        
+        if (level === 10) {
+          modalTitle.textContent = "Поздравляем!";
+          modalText.textContent = "Вы прошли все 10 уровней! Игра начнётся сначала.";
+          modalBtn.textContent = "НАЧАТЬ СНАЧАЛА";
+        } else {
+          modalTitle.textContent = "Отлично!";
+          modalText.textContent = "Связи установлены идеально.";
+          modalBtn.textContent = "ДАЛЕЕ";
+        }
+        
+        winModal.classList.remove("hidden");
+      }, 260);
     }
   }
 
@@ -436,8 +452,13 @@
   newLevelBtn.addEventListener("click", setupLevel);
 
   modalNextBtn.addEventListener("click", () => {
-    level += 1;
-    setupLevel();
+    if (level < 10) {
+      level += 1;
+      setupLevel();
+    } else {
+      level = 1;
+      setupLevel();
+    }
   });
 
   window.addEventListener("resize", () => {
