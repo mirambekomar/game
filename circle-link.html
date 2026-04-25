@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" class="game-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Circle Link — Внутри круга</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body class="game-page">
+  <a class="nav-back" href="index.html">← Меню игр</a>
+  <div id="ui-header">
+    <h1 class="title">CIRCLE LINK 2.0</h1>
+    <p class="subtitle">Линии не должны выходить за границы</p>
+    <div id="status-container">
+      <div class="ui-element status-pill">
+        Уровень: <span id="level-display" class="accent-text">1</span>
+      </div>
+      <div class="ui-element status-pill">
+        Прогресс: <span id="pairs-display" class="accent-text">0/3</span>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="gameCanvas" aria-label="Игровое поле Circle Link"></canvas>
+
+  <div id="controls">
+    <button id="reset-lines-btn" type="button" class="ui-element btn">Очистить</button>
+    <button id="new-level-btn" type="button" class="ui-element btn">Новый уровень</button>
+  </div>
+
+  <div id="win-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-card">
+      <div class="modal-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" class="modal-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h2 id="win-title">Отлично!</h2>
+      <p>Связи установлены идеально.</p>
+      <button id="modal-next-btn" type="button" class="modal-next-btn">ДАЛЕЕ</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
