@@ -23,19 +23,29 @@ body {
   -webkit-overflow-scrolling: auto;
 }
 
-html {
+html.game-root {
   position: fixed;
   width: 100%;
   height: 100%;
 }
 
+html.hub-root {
+  width: 100%;
+  min-height: 100%;
+}
+
 body {
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
+  margin: 0;
+  min-height: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body.game-page {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -43,7 +53,191 @@ body {
   justify-content: space-between;
   height: 100vh;
   height: 100dvh;
-  padding: max(16px, env(safe-area-inset-top)) 0 max(18px, env(safe-area-inset-bottom));
+  padding: max(12px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-left)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-right));
+}
+
+body.hub-page {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: max(24px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.nav-back {
+  align-self: flex-start;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-back:hover {
+  color: var(--accent);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.hub-header {
+  text-align: center;
+  margin-bottom: 28px;
+  max-width: 420px;
+}
+
+.hub-title {
+  margin-bottom: 8px;
+}
+
+.hub-subtitle {
+  margin-bottom: 0;
+}
+
+.hub-grid {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.game-card {
+  display: block;
+  padding: 22px 22px 20px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow: 0 16px 48px rgba(56, 189, 248, 0.12);
+}
+
+.game-card:active {
+  transform: scale(0.98);
+}
+
+.game-card-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.game-card-title {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #22d3ee, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.game-card-alt .game-card-title {
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.game-card-desc {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.game-card-cta {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+.pulse-header {
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+}
+
+.pulse-title {
+  background: linear-gradient(90deg, #4ade80, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.pulse-subtitle {
+  margin-bottom: 12px;
+}
+
+.pulse-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.pulse-stats .ui-element {
+  width: auto;
+  min-width: 108px;
+  padding: 0 14px;
+}
+
+.pulse-combo-wrap {
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 380px) {
+  .pulse-combo-wrap {
+    flex-basis: auto;
+  }
+}
+
+#pulseCanvas {
+  max-width: 95%;
+  max-height: 50vh;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 0 24px rgba(74, 222, 128, 0.15));
+  margin: auto 0;
+  touch-action: none;
+}
+
+.pulse-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+
+.pulse-btn-wide {
+  width: min(280px, 90%);
+  max-width: 100%;
 }
 
 #ui-header {
